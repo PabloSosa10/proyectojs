@@ -1,5 +1,6 @@
 //calculadora par emprendimientos
 let continuar = true
+let si = true
 //esto calcula si esta en el mercosur
     function CalcularConIVA(Producto){
     const Iva = 21;
@@ -16,25 +17,54 @@ let continuar = true
 
      return PorcentajeIVA + PorcentajeArancel + Producto;
 }
+//calcular el envio, si es nacional y mayor a 10K es gratis sino se suma el 30%
+    function CalcularEnvio(Producto){
+         const Envio = 30;
+        const CosteEnvio = Envio * Producto / 100;
+        return CosteEnvio;
+    }
 
 while(continuar){
 
 let Valor = parseInt(prompt ("ingrese el valor de su producto"));
 const Mercosur = ["argentina", "bolivia", "uruguay", "brasil", "paraguay"];
-let pais = prompt("ingrese de que pais proviene su prducto" )
+let pais = prompt("ingrese de que pais proviene su prducto").toLocaleLowerCase();
+let PrecioParcial;
 
  if (Mercosur.includes(pais)) 
     {
-        let PrecioFinal = CalcularConIVA(Valor)
-        console.log(`precio total es: ${PrecioFinal}`);
+        PrecioParcial = CalcularConIVA(Valor)
+        console.log(`precio total es: $ ${PrecioParcial}`);
 }
  else {
 
-        let PrecioFinal = CalcularCompleto(Valor)
-        console.log(`precio total es: ${PrecioFinal}`);
+        PrecioParcial = CalcularCompleto(Valor)
+        console.log(`precio total es: $ ${PrecioParcial}`);
 
  }
 
- continuar = confirm("¿Desea calcular otro producto?");
+  let deseacCalcularEnvio = confirm("¿Desea calcular el envio?")
+
+        if (deseacCalcularEnvio){
+        let DestinoEnvio = prompt("ingrese a donde quiere enviarlo").toLocaleLowerCase();
+            
+            if (DestinoEnvio === Mercosur[0] && Valor >= 10000){
+                    console.log ("su envio es GRATIS!!! ")
+            }
+            else{
+                let CosteEnvio = CalcularEnvio(PrecioParcial)
+                let precioTotalConEnvio = PrecioParcial + CosteEnvio;
+                console.log(`El costo del envío es de: $${CosteEnvio}`);
+                console.log(`Su total final (producto + envío) es: $${precioTotalConEnvio}`)
+            }
+        }
+    else{
+        console.log(`El precio final del producto (sin envío) es: $${PrecioParcial}`);
+       
+        }
+    continuar = confirm("¿Desea calcular otro producto?")
 }
 
+console.log("Gracias por usar la calculadora para emprendimientos.");
+
+//mejorar las funciones cuando aprenda objetos
