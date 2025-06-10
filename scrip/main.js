@@ -49,7 +49,7 @@ let PrecioParcial;
         let DestinoEnvio = prompt("ingrese a donde quiere enviarlo").toLocaleLowerCase();
             
             if (DestinoEnvio === Mercosur[0] && Valor >= 10000){
-                    alert ("su envio es GRATIS!!! ");
+                    console.log ("su envio es GRATIS!!! ")
             }
             else{
                 let CosteEnvio = CalcularEnvio(PrecioParcial)
