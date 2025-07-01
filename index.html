@@ -3,9 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>scrip trabajo</title>
-    <script defer src="scrip/main.js"></script>
+    <title>CalcuPyME</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+     <script defer src="scrip/main.js"></script>    
 </head>
 <body>
+    <header>
+        <h1>CalcuPyME</h1>
+        <p>Calculadora de Precios de Productos para Microempresas</p>   
+    </header>
+    <main>
+     <div class="container mt-5">
+        <h2>Calculadora para Emprendimientos</h2>
+    <ul class="nav nav-tabs" id="dosPestañas" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="botonPestaña1" data-bs-toggle="tab" data-bs-target="#formularioImpuestos" type="button" role="tab" aria-controls="formularioImpuestos" aria-selected="true">Calcular impuestos de importacion</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="botonPestaña2" data-bs-toggle="tab" data-bs-target="#formularioGanancia" type="button" role="tab" aria-controls="formularioGanancia" aria-selected="false">Calcular margen de ganacia</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="contenedorFormularios">
+        <div class="tab-pane fade show active" id="formularioImpuestos" role="tabpanel" aria-labelledby="botonPestaña1">
+            <div id="contenedorFormularioImpuestos">
+                <h3>calculadora iva para Impuestos</h3>
+                <div style="margin-bottom: 15px;">
+                    <label for="tipoProducto" class="form-label">que tipo de producto es?</label>
+                    <select class="form-select" id="formularioTipoProducto" name="formularioProducto" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="medicina">medicina</option>
+                        <option value="alimento_basico">alimento basico</option>
+                        <option value="servicio_publico">servicio publico</option>
+                        <option value="comunicaciones">comunicaciones</option>
+                        <option value="otros">otros</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="valorProducto">Ingrese el valor de su producto</label>
+                    <input type="number" id="valorProducto" class="form-control" placeholder="valor de su producto" required>
+                </div>       
+                <div class="mb-3">
+                    <label class="form-label" for="paisProducto">de que pais proviene su producto?</label>
+                    <input type="text" id="paisProducto" class="form-control" placeholder="ingrese pais" required>
+                </div>   
+
+
+                <button type="button" id="calcularValorImpuestos" class="btn btn-primary">Calcular Impuestos</button>
+                <div id="importarImpuestosDisplay" class="mt-3 alert alert-info" style="display:none;">
+                    <p>Precio Total Estimado (con impuestos): <span id="valorImpuestosOutput"></span></p>
+                </div>     
+                <div id="errorImpuestosMensaje" class="mt-3"></div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="formularioGanancia" role="tabpanel" aria-labelledby="botonPestaña2">
+            <div id="contenedorFormularioGanancia">
+                <h3>Margen de Ganancia</h3>
+                <div class="mb-3">
+                    <label class="form-label" for="valorProductoDos">Ingrese el valor de su producto</label>
+                    <input type="number" id="valorProductoDos" class="form-control" placeholder="valor de su producto" min="0" required>
+                </div>       
+                <div class="mb-3">
+                    <label class="form-label" for="margenGanancia">Ingrese su margen de ganacia</label>
+                    <input type="number" id="margenGanancia" class="form-control" placeholder="Margen de Ganancia" min="0" max="100" required>
+                </div>   
+                <button type="button" id="calcularGananciaBoton" class="btn btn-primary">Calcular Precio de Venta</button>
+                <div id="resultadoGanancia" class="mt-3 alert alert-info" style="display:none;">
+                    <p>Precio de Venta Sugerido: <span id="precioSugerido"></span></p>
+                </div>
+                <div id="errorGananciaMensaje" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    <section class="mt-5">
+        <h2 class="mb-3">Historial de Cálculos Recientes</h2>
+        <div id="historialContenedor" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <p id="sinHistorial" class="col-12">No hay cálculos guardados todavia</p>
+        </div>
+        <button id="borrarHistorial" class="btn btn-danger mt-4" style="display: none;">Borrar Todo el Historial</button>      
+    </section>
+    </main>
+
+    <footer class="bg-light text-center py-3 mt-5">
+        <p>&copy; 2025 CalcuPyME. Todos los derechos reservados.</p>
+        <p>me guardado el derecho a que lo que calcules aca este mas desactualizado que bootstrap</p>
+    </footer>
+
     
+
 </body>
+</html>
